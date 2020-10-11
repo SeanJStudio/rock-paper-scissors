@@ -1,18 +1,14 @@
 <script>
-    // Enum to hold available moves for play
     const MOVES = {ROCK: "rock", PAPER: "paper", SCISSORS: "scissors"};
 
-    // Initialize scores for all players
     let userScore = 0;
     let computerScore = 0;
 
-    // Randomly selects move for computer
     function getComputerMove(){
         let rand = Math.floor(Math.random() * Object.keys(MOVES).length);
         return MOVES[Object.keys(MOVES)[rand]];
     }
 
-    // Prompts user for a move and saves if valid, else getUserMove() is called again
     function getUserMove(){
         let move = prompt(`Enter ${MOVES.ROCK}, ${MOVES.PAPER}, or ${MOVES.SCISSORS}`);
 
@@ -24,19 +20,16 @@
         userMove();
     }
 
-    // Plays a round of rock, paper, scissors by passing the user and computer moves
     function playRound(userMove, computerMove){
         const TIE_MESSAGE = `Tie, ${userMove} equals ${computerMove}.`;
         const WIN_MESSAGE = `You win, ${userMove} beats ${computerMove}.`;
         const LOSE_MESSAGE = `You lose, ${computerMove} beats ${userMove}.`;
 
-        // If there is tie, log the message and return
         if(userMove == computerMove){
             console.log(TIE_MESSAGE);
             return;
         }
 
-        // Log and update scores for all other possibilites
         switch(userMove){
             case MOVES.ROCK:
             if (computerMove == MOVES.SCISSORS){
@@ -71,13 +64,11 @@
         
     }
 
-    // Reset the scores
     function reset(){
         userScore = 0;
         computerScore = 0;
     }
 
-    // Plays 5 rounds of rock, paper, scissors
     function runGame(){
         reset();
 
@@ -99,7 +90,6 @@
             console.log("You lost! " + SCORES);
     }
 
-    // Run the game
     runGame();
 
 </script>
