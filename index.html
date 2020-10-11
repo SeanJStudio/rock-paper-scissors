@@ -1,0 +1,105 @@
+<script>
+    // Enum to hold available moves for play
+    const MOVES = {ROCK: "rock", PAPER: "paper", SCISSORS: "scissors"};
+
+    // Initialize scores for all players
+    let userScore = 0;
+    let computerScore = 0;
+
+    // Randomly selects move for computer
+    function computerMove(){
+        let rand = Math.floor(Math.random() * Object.keys(MOVES).length);
+        return MOVES[Object.keys(MOVES)[rand]];
+    }
+
+    // Prompts user for move and saves if valid, else userMove() is called again
+    function userMove(){
+        let move = prompt(`Enter ${MOVES.ROCK}, ${MOVES.PAPER}, or ${MOVES.SCISSORS}`);
+
+        move = move.trim().toLowerCase();
+
+        if(Object.values(MOVES).includes(move))
+            return move;
+        
+        userMove();
+    }
+
+    // Plays a round of rock, paper, scissors by taking the user and computer moves
+    function playRound(userMove, computerMove){
+        const TIE_MESSAGE = `Tie ${userMove} equals ${computerMove}`;
+        const WIN_MESSAGE = `You win ${userMove} beats ${computerMove}.`;
+        const LOSE_MESSAGE = `You lose ${computerMove} beats ${userMove}.`;
+
+        // If there is tie, log the message and return
+        if(userMove == computerMove){
+            console.log(TIE_MESSAGE);
+            return;
+        }
+
+        // Log and update scores for all other possibilites
+        switch(userMove){
+            case MOVES.ROCK:
+            if (computerMove == MOVES.SCISSORS){
+                console.log(WIN_MESSAGE);
+                ++userScore;
+            } else {
+                console.log(LOSE_MESSAGE);
+                ++computerScore;
+            }
+            break;
+            case MOVES.PAPER:
+            if (computerMove == MOVES.ROCK){
+                console.log(WIN_MESSAGE);
+                ++userScore;
+            } else {
+                console.log(LOSE_MESSAGE);
+                ++computerScore;
+            }
+            break;
+            case MOVES.SCISSORS:
+            if (computerMove == MOVES.PAPER){
+                console.log(WIN_MESSAGE);
+                ++userScore;
+            } else {
+                console.log(LOSE_MESSAGE);
+                ++computerScore;
+            }
+            break;
+            default:
+            break;
+        }
+        
+    }
+
+    // Reset the scores
+    function reset(){
+        userScore = 0;
+        computerScore = 0;
+    }
+
+    // Plays 5 rounds of rock, paper, scissors
+    function game(){
+        reset();
+
+        const ROUNDS = 5;
+
+        for(let i = 0; i < ROUNDS; ++i){
+            console.log(`Round ${i + 1}:`);
+            playRound(userMove(), computerMove());
+        }
+
+        const SCORES = `userScore: ${userScore} computerScore: ${computerScore}`;
+
+        console.log("Final score:")
+        if(userScore == computerScore)
+            console.log("Tie game! " + SCORES);
+        else if(userScore > computerScore)
+            console.log("You won! " + SCORES);
+        else
+            console.log("You lost! " + SCORES)
+    }
+
+    // Run the game
+    game();
+
+</script>
