@@ -12,7 +12,7 @@
         return MOVES[Object.keys(MOVES)[rand]];
     }
 
-    // Prompts user for move and saves if valid, else userMove() is called again
+    // Prompts user for a move and saves if valid, else getUserMove() is called again
     function getUserMove(){
         let move = prompt(`Enter ${MOVES.ROCK}, ${MOVES.PAPER}, or ${MOVES.SCISSORS}`);
 
@@ -24,11 +24,11 @@
         userMove();
     }
 
-    // Plays a round of rock, paper, scissors by taking the user and computer moves
+    // Plays a round of rock, paper, scissors by passing the user and computer moves
     function playRound(userMove, computerMove){
-        const TIE_MESSAGE = `Tie ${userMove} equals ${computerMove}`;
-        const WIN_MESSAGE = `You win ${userMove} beats ${computerMove}.`;
-        const LOSE_MESSAGE = `You lose ${computerMove} beats ${userMove}.`;
+        const TIE_MESSAGE = `Tie, ${userMove} equals ${computerMove}.`;
+        const WIN_MESSAGE = `You win, ${userMove} beats ${computerMove}.`;
+        const LOSE_MESSAGE = `You lose, ${computerMove} beats ${userMove}.`;
 
         // If there is tie, log the message and return
         if(userMove == computerMove){
@@ -78,28 +78,28 @@
     }
 
     // Plays 5 rounds of rock, paper, scissors
-    function game(){
+    function runGame(){
         reset();
 
         const ROUNDS = 5;
 
-        for(let i = 0; i < ROUNDS; ++i){
-            console.log(`Round ${i + 1}:`);
+        for(let round = 0; round < ROUNDS; ++round){
+            console.log(`Round ${round + 1}:`);
             playRound(getUserMove(), getComputerMove());
         }
 
         const SCORES = `userScore: ${userScore} computerScore: ${computerScore}`;
 
-        console.log("Final score:")
+        console.log("Final score:");
         if(userScore == computerScore)
             console.log("Tie game! " + SCORES);
         else if(userScore > computerScore)
             console.log("You won! " + SCORES);
         else
-            console.log("You lost! " + SCORES)
+            console.log("You lost! " + SCORES);
     }
 
     // Run the game
-    game();
+    runGame();
 
 </script>
