@@ -7,13 +7,13 @@
     let computerScore = 0;
 
     // Randomly selects move for computer
-    function computerMove(){
+    function getComputerMove(){
         let rand = Math.floor(Math.random() * Object.keys(MOVES).length);
         return MOVES[Object.keys(MOVES)[rand]];
     }
 
     // Prompts user for move and saves if valid, else userMove() is called again
-    function userMove(){
+    function getUserMove(){
         let move = prompt(`Enter ${MOVES.ROCK}, ${MOVES.PAPER}, or ${MOVES.SCISSORS}`);
 
         move = move.trim().toLowerCase();
@@ -85,7 +85,7 @@
 
         for(let i = 0; i < ROUNDS; ++i){
             console.log(`Round ${i + 1}:`);
-            playRound(userMove(), computerMove());
+            playRound(getUserMove(), getComputerMove());
         }
 
         const SCORES = `userScore: ${userScore} computerScore: ${computerScore}`;
