@@ -1,5 +1,6 @@
 <script>
     const MOVES = {ROCK: "rock", PAPER: "paper", SCISSORS: "scissors"};
+    const WINNING_MOVES = ['rs', 'pr', 'sp'];
 
     let userScore = 0;
     let computerScore = 0;
@@ -25,43 +26,17 @@
         const WIN_MESSAGE = `You win, ${userMove} beats ${computerMove}.`;
         const LOSE_MESSAGE = `You lose, ${computerMove} beats ${userMove}.`;
 
+        const playerMoves = userMove[0] + computerMove[0];
+        
         if(userMove == computerMove){
             console.log(TIE_MESSAGE);
-            return;
+        }else if(WINNING_MOVES.includes(playerMoves)){
+            console.log(WIN_MESSAGE);
+            ++userScore;
+        } else {
+            console.log(LOSE_MESSAGE);
+            ++userScore;
         }
-
-        switch(userMove){
-            case MOVES.ROCK:
-            if (computerMove == MOVES.SCISSORS){
-                console.log(WIN_MESSAGE);
-                ++userScore;
-            } else {
-                console.log(LOSE_MESSAGE);
-                ++computerScore;
-            }
-            break;
-            case MOVES.PAPER:
-            if (computerMove == MOVES.ROCK){
-                console.log(WIN_MESSAGE);
-                ++userScore;
-            } else {
-                console.log(LOSE_MESSAGE);
-                ++computerScore;
-            }
-            break;
-            case MOVES.SCISSORS:
-            if (computerMove == MOVES.PAPER){
-                console.log(WIN_MESSAGE);
-                ++userScore;
-            } else {
-                console.log(LOSE_MESSAGE);
-                ++computerScore;
-            }
-            break;
-            default:
-            break;
-        }
-        
     }
 
     function resetScores(){
