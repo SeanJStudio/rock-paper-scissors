@@ -1,1 +1,1 @@
-Odin project for Rock Paper Scissors games
+Odin project for Rock Paper Scissors game
